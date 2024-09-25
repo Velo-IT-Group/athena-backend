@@ -75,7 +75,7 @@ Deno.serve(async (req) => {
 						date: new Date(payload.timestamp).toISOString(),
 						communication_channel: payload.task_channel_unique_name,
 						workflow: payload.workflow_name,
-						in_business_hours: attributes.in_business_hours,
+						in_business_hours: Boolean(attributes.in_business_hours),
 						contact_id: attributes.userId ? Number(attributes.userId) : null,
 						company_id: attributes.companyId ? Number(attributes.companyId) : null,
 					})
