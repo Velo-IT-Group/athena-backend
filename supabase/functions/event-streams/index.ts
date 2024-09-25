@@ -41,8 +41,8 @@ Deno.serve(async (req) => {
 					.eq('id', attributes.direction === 'outbound' ? payload.task_sid : attributes.call_sid)
 					.then(({data, error}) => {
 						if (error) {
-							console.error(error)
-						} else if(data) {
+							console.error('com.twilio.taskrouter.reservation.wrapup: ', error, payload)
+						} else {
 							console.log(data);
 						}
 					});
@@ -59,7 +59,7 @@ Deno.serve(async (req) => {
 					.eq('id', attributes.direction === 'outbound' ? payload.task_sid : attributes.call_sid)
 					.then(({ data, error }) => {
 						if (error) {
-							console.error(error)
+							console.error('com.twilio.taskrouter.task.canceled: ', error, payload)
 						} else if(data) {
 							console.log(data);
 						}
@@ -81,7 +81,7 @@ Deno.serve(async (req) => {
 					})
 					.then(({ data, error }) => {
 						if (error) {
-							console.error(error)
+							console.error('com.twilio.taskrouter.task.created: ', error, payload)
 						} else if(data) {
 							console.log(data);
 						}
@@ -101,7 +101,7 @@ Deno.serve(async (req) => {
 					.eq('id', attributes.direction === 'outbound' ? payload.task_sid : attributes.call_sid)
 					.then(({ data, error }) => {
 						if (error) {
-							console.error(error)
+							console.error('com.twilio.taskrouter.reservation.accepted: ', error, payload)
 						} else if(data) {
 							console.log(data);
 						}
@@ -116,7 +116,7 @@ Deno.serve(async (req) => {
 					})
 					.then(({ data, error }) => {
 						if (error) {
-							console.error(error)
+							console.error('com.twilio.voice.twiml.enqueue.finished: ', error, payload)
 						} else if(data) {
 							console.log(data);
 						}
