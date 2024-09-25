@@ -42,7 +42,7 @@ Deno.serve(async (req) => {
 					.then(({data, error}) => {
 						if (error) {
 							console.error(error)
-						} else {
+						} else if(data) {
 							console.log(data);
 						}
 					});
@@ -60,7 +60,7 @@ Deno.serve(async (req) => {
 					.then(({ data, error }) => {
 						if (error) {
 							console.error(error)
-						} else {
+						} else if(data) {
 							console.log(data);
 						}
 					});
@@ -82,7 +82,7 @@ Deno.serve(async (req) => {
 					.then(({ data, error }) => {
 						if (error) {
 							console.error(error)
-						} else {
+						} else if(data) {
 							console.log(data);
 						}
 					});
@@ -102,7 +102,7 @@ Deno.serve(async (req) => {
 					.then(({ data, error }) => {
 						if (error) {
 							console.error(error)
-						} else {
+						} else if(data) {
 							console.log(data);
 						}
 					});
@@ -117,7 +117,7 @@ Deno.serve(async (req) => {
 					.then(({ data, error }) => {
 						if (error) {
 							console.error(error)
-						} else {
+						} else if(data) {
 							console.log(data);
 						}
 					});
