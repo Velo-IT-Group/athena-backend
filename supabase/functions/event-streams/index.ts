@@ -51,8 +51,8 @@ Deno.serve(async (req) => {
 				supabase
 					.from('conversations')
 					.update({
-						abandoned: 'Yes',
-						abandoned_phase: attributes.conversations?.abandoned_phase || 'Queue',
+						abandoned: attributes.conversations?.abandoned ?? 'Yes',
+						abandoned_phase: attributes.conversations?.abandoned_phase ?? 'Queue',
 						abandon_time: payload.task_age,
 						outcome: payload.task_canceled_reason,
 					})
