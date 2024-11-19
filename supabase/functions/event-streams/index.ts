@@ -38,7 +38,7 @@ Deno.serve(async (req) => {
 					.update({
 						talk_time: duration,
 					})
-					.eq('id', attributes.direction === 'outbound' ? payload.task_sid : attributes.call_sid)
+					.eq('id', attributes.call_sid ?? payload.task_sid)
 					.then(({data, error}) => {
 						if (error) {
 							console.error('com.twilio.taskrouter.reservation.wrapup: ', error, payload)
@@ -56,7 +56,7 @@ Deno.serve(async (req) => {
 						abandon_time: payload.task_age,
 						outcome: payload.task_canceled_reason,
 					})
-					.eq('id', attributes.direction === 'outbound' ? payload.task_sid : attributes.call_sid)
+					.eq('id', attributes.call_sid ?? payload.task_sid)
 					.then(({ data, error }) => {
 						if (error) {
 							console.error('com.twilio.taskrouter.task.canceled: ', error, payload)
@@ -69,7 +69,7 @@ Deno.serve(async (req) => {
 				supabase
 					.from('conversations')
 					.upsert({
-						id: attributes.direction === 'outbound' ? payload.task_sid : attributes.call_sid,
+						id: attributes.call_sid ?? payload.task_sid,
 						phone_number: attributes.from,
 						direction: attributes.direction,
 						date: new Date(payload.timestamp).toISOString(),
@@ -98,7 +98,7 @@ Deno.serve(async (req) => {
 						agent: payload.worker_sid,
 						queue: payload.task_queue_name,
 					})
-					.eq('id', attributes.direction === 'outbound' ? payload.task_sid : attributes.call_sid)
+					.eq('id', attributes.call_sid ?? payload.task_sid)
 					.then(({ data, error }) => {
 						if (error) {
 							console.error('com.twilio.taskrouter.reservation.accepted: ', error, payload)
